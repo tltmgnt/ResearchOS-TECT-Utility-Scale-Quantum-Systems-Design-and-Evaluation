@@ -80,3 +80,13 @@ Existing output directories are rejected. The verifier checks hashes, evidence-t
 - [Contributing](CONTRIBUTING.md)
 
 CI installs the package and runs tests plus the full example workflow across Python 3.10–3.13, with synthetic bundle artifacts. The existing [license](LICENSE) is preserved.
+
+## Interactive browser app
+
+The `web/` directory contains a local-first study builder, architecture scenario editor, one-QPU schedule timelines, comparison matrix, requirements and risk registers, evidence checksum tools, and JSON/CSV/Markdown exports. Evaluation runs in a browser worker. Serve with `python -m http.server 8000 --directory web` and open `http://localhost:8000`. Run web checks with `node web/tests/model.test.mjs`. Use localhost or HTTPS for modules, workers and Web Crypto.
+
+Studies stay in the current browser and origin; export regularly. No GitHub, CLI or cross-device synchronization is configured. Study JSON exports are compatible with the CLI. Browser results and reports are summaries, not complete CLI evidence bundles. Selected files are hashed locally; only declarations are stored, and original files must be retained separately. Imported/reloaded records do not re-verify evidence bytes. The builder creates synthetic/simulation studies; experimental studies can be imported with their evidence declarations. Editing an imported experimental study as a new template changes its input basis to simulation for explicit review.
+
+The web model is checked against the Python scheduler across multiple study variants. Derived integers beyond JavaScript safe precision are rejected with a direction to use the Python CLI. Floating-point boundary differences can still occur across runtimes.
+
+Private hosted app: https://researchos-tect-quantum-systems.troturn31.chatgpt.site
