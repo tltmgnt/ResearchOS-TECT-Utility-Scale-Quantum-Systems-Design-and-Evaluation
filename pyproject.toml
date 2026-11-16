@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "researchos-tect-quantum-systems"
+version = "0.1.0"
+description = "Evidence-linked architecture studies and quantum-classical workflow planning"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = []
+
+[project.scripts]
+researchos-systems = "researchos_systems.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["researchos_systems*"]
