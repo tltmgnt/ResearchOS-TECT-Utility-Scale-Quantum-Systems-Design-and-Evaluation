@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "synthetic-system-001",
+  "title": "Illustrative hybrid workflow and architecture scenario study",
+  "owner": "example-only",
+  "hypothesis": "Shared QPU contention can make end-to-end workflow duration exceed the unconstrained dependency critical path.",
+  "workload_reference": "docs/MODEL.md; fictional scheduling fixture, not an application demonstration",
+  "data_kind": "synthetic",
+  "qbit": null,
+  "workflow": [
+    {"id": "prepare", "kind": "classical", "description": "Illustrative preprocessing", "depends_on": [], "duration_s": 1, "evidence_ids": []},
+    {"id": "quantum-a", "kind": "quantum", "description": "Assumed independent quantum subtask A", "depends_on": ["prepare"], "logical_qubits": 10, "logical_depth": 100, "shots": 1000, "setup_s": 0.1, "evidence_ids": []},
+    {"id": "quantum-b", "kind": "quantum", "description": "Assumed independent quantum subtask B", "depends_on": ["prepare"], "logical_qubits": 20, "logical_depth": 200, "shots": 1000, "setup_s": 0.1, "evidence_ids": []},
+    {"id": "postprocess", "kind": "classical", "description": "Illustrative aggregation", "depends_on": ["quantum-a", "quantum-b"], "duration_s": 0.5, "evidence_ids": []}
+  ],
+  "scenarios": [
+    {"id": "reference", "architecture": "Fictional reference architecture", "logical_capacity": 32, "physical_capacity": 50000, "physical_qubits_per_logical": 1000, "factory_physical_qubits": 100, "cycles_per_layer": 10, "cycle_time_us": 1, "logical_error_per_qubit_cycle": 1e-10, "assumption_reference": "Illustrative fixture only; no compiler or calibration", "evidence_ids": []},
+    {"id": "slower-cycle", "architecture": "Fictional sensitivity case: twice the cycle duration", "logical_capacity": 32, "physical_capacity": 50000, "physical_qubits_per_logical": 1000, "factory_physical_qubits": 100, "cycles_per_layer": 10, "cycle_time_us": 2, "logical_error_per_qubit_cycle": 1e-10, "assumption_reference": "Sensitivity fixture; all other assumptions unchanged", "evidence_ids": []},
+    {"id": "capacity-gap", "architecture": "Fictional undersized architecture", "logical_capacity": 16, "physical_capacity": 15000, "physical_qubits_per_logical": 1000, "factory_physical_qubits": 100, "cycles_per_layer": 10, "cycle_time_us": 1, "logical_error_per_qubit_cycle": 1e-10, "assumption_reference": "Intentional capacity failure fixture", "evidence_ids": []}
+  ],
+  "declared_quality": {"metric": "Illustrative application correctness", "criterion": "Placeholder only; not evaluated by this scheduler", "meets_criterion": true, "reference": "Synthetic fixture; no application correctness established", "evidence_ids": []},
+  "classical_baseline": {"runtime_s": 10, "same_workload_and_timing_scope": true, "meets_quality_criterion": true, "method": "Fictional total timing fixture; not measured", "reference": "Synthetic example only", "evidence_ids": []},
+  "requirements": [
+    {"id": "workload-quality", "text": "Define and validate application-level quality against a matched baseline", "source_reference": "Owner-defined research requirement, not an official QBIT requirement", "assessment": "gap", "rationale": "No real application or measurement is included", "evidence_ids": []},
+    {"id": "topic-selection", "text": "Identify the applicable QBIT and its submission instructions", "source_reference": "Owner-defined engagement checklist", "assessment": "unassessed", "rationale": "No topic selected for this synthetic study", "evidence_ids": []}
+  ],
+  "risks": [
+    {"id": "overhead-model", "description": "Declared overhead omits architecture-specific routing, decoding and factory throughput", "likelihood": "high", "impact": "high", "mitigation": "Replace assumptions with independently checked compiler/architecture estimates", "evidence_ids": []}
+  ],
+  "evidence": []
+}
